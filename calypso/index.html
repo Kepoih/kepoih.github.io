@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js" integrity="sha512-BB7rb8ZBAxtdJdB7nwDijJH9NC+648xSzviK9Itm+5APTtdpgKz1+82bDl4znz/FBhd0R7pJ/gQtomnMpZYzRw==" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+    <body>
+
+        <audio id="upgradeAudio">
+            <source src="upgrade.wav" type="audio/wav">
+        </audio>
+        <audio id="successAudio">
+            <source src="success.wav" type="audio/wav">
+        </audio>
+        
+        <div class="container">
+            <div id=counter-div><span id="counter">0</span>  ❤️</div>
+            <img src="heart.png" class="outline"/>
+            <img src="heart.png" class="heart-ref"/>
+            <div id="lottie-confetti"></div>
+            <div class="svg-normal-mask" >
+                <div class="heart-background"></div>
+                <div id="loader-container"></div>
+            </div>
+            <div id="autoclicker-container"></div>
+            <div id="cursor-upgrade-options">
+                <template id="upgrade-template">
+                    <div class="upgrade">
+                        <div class="upgrade-title"></div>
+                        <div class="upgrade-cost"></div>
+                    </div>
+                </template>
+            </div>
+            <div id="autoclick-upgrade-options">
+                <template id="upgrade-template">
+                    <div class="upgrade">
+                        <div class="upgrade-title"></div>
+                        <div class="upgrade-cost"></div>
+                    </div>
+                </template>
+            </div>
+        </div>
+        <script src="script.js" async defer></script>
+    </body>
+</html>
