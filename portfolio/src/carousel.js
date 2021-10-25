@@ -21,8 +21,6 @@ export const carousel = (project, container, index) => {
     backgroundImage;
    
 function createCarousel () {
-  console.log("index ; ", index);
-  console.log("project : ", JSON.stringify(project));
   let contentPage = project["pages"][0];
   if (contentPage) {
       let carouselContainer = document.createElement('div');
@@ -121,7 +119,6 @@ function findElements () {
   $arrowNext = $(container).find('.item_next');
   $itemArrow = $(container).find('.item_arrow');
 
-  console.log("CAROUSEL : CONTAINER", JSON.stringify($carouselContainer))
   // $navDots = $('.nav_dots');
 }
 
@@ -132,8 +129,11 @@ function findElements () {
 
   setTimeout(() => {
     $carouselContainer.addClass("visible");
+    checkFullscreen(0);
+    setTimeout(() => {
+      container.scrollIntoView({inline: "center", "behavior": "smooth"});
+    }, 500);
   }, 10)
-  container.scrollIntoView({inline: "center", "behavior": "smooth"});
 
    $carouselItems.css({'width': (itemW * carousel_count) + 'px'});
   //  $navDots.css({'width': (25 * carousel_count) + 'px'});
@@ -175,6 +175,37 @@ function findElements () {
    $navDot = $('.nav_dot');
  }  
  
+function checkFullscreen(index) {
+  let page = $carouselItem[index];
+if ($(page).has("div.fullscreen").length) {
+      backgroundImage = document.createElement('img');
+      backgroundImage.src = assetsBasePath + project["pages"][index]["image"];
+      backgroundImage.className = "project_fullscreen_image";
+      backgroundImage.style.display = "none";
+      container.appendChild(backgroundImage);
+
+      $(window).scroll(function() {
+      var scrollTop = $(this).scrollTop();
+    
+      $(backgroundImage).css({
+        opacity: function() {
+          var $this = $(this);
+          var offset = $this.offset();
+          var height = $this.height();
+
+          return 1 - (Math.abs(offset.top - scrollTop))/height
+        }
+      });
+    });
+
+    $(backgroundImage).fadeIn();
+    } else {
+      $(backgroundImage).fadeOut(() => {
+        $(backgroundImage).remove();
+      });
+    }
+  }
+
  // navigate slide
    function navigateSlide() {
        
@@ -196,37 +227,9 @@ function findElements () {
       if (previousActiveID != activeID) {
         previousActiveID = activeID;
         if ($carouselItem[activeID]) {
-        let page = $carouselItem[activeID];
-        if ($(page).has("div.fullscreen").length) {
-             console.log("DIV FULLSCREEN")
-             backgroundImage = document.createElement('img');
-             backgroundImage.src = assetsBasePath + project["pages"][activeID]["image"];
-             backgroundImage.className = "project_fullscreen_image";
-             backgroundImage.style.display = "none";
-             let scrollTop = $(backgroundImage).scrollTop();
-             container.appendChild(backgroundImage);
-  
-             $(window).scroll(function() {
-              var scrollTop = $(this).scrollTop();
-            
-              $(backgroundImage).css({
-                opacity: function() {
-                  var $this = $(this);
-                  var offset = $this.offset();
-                  var height = $this.height();
-  
-                  return 1 - (Math.abs(offset.top - scrollTop))/height
-                }
-              });
-            });
-  
-            $(backgroundImage).fadeIn();
-            } else {
-              $(backgroundImage).fadeOut(() => {
-                $(backgroundImage).remove();
-              });
-           }
-         }
+          // let page = $carouselItem[activeID];
+          checkFullscreen(activeID);
+        }
       }
 
    //

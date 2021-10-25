@@ -20,7 +20,8 @@ export const projects =
         "pages": [
             {
                 "image": "img_1.png",
-                "legend": "<b>Gianni</b>, 2018, document, vernis, graphite, colle de peau et urine sur toile, craie grasse, bois, verre, peinture acrylique sur métal — l’ensemble 195 x 130 cm."
+                "legend": "<b>Gianni</b>, 2018, document, vernis, graphite, colle de peau et urine sur toile, craie grasse, bois, verre, peinture acrylique sur métal — l’ensemble 195 x 130 cm.",
+                "fullscreen": true
             },
             {
                 "image": "img_2.jpeg",

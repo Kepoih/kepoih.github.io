@@ -87,10 +87,12 @@ p {
     overflow: hidden;
     margin-bottom: 0px;
     margin-top: 0px;
+    height: 50px;
     opacity: 0;
     transition: opacity 0.5s ease-in,
         margin .5s ease-in-out,
-        height .5s ease-in-out;
+        padding .5s ease-in-out,
+        height .75s ease-in-out;
     
     .project_title {
         text-transform: uppercase;
