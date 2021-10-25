@@ -63,6 +63,9 @@ const closeProject = (index) => {
     setTimeout(() => {
         projectContainer.getElementsByClassName("carousel_container")[0].remove();
     }, 500);
-    projectContainer.getElementsByClassName("project_fullscreen_image")[0]?.remove();
+    const images = Array.from(projectContainer.getElementsByClassName("project_fullscreen_image"));
+    for (const element of images) {
+        element.remove();
+    };
     selectedIndex = null;
 }
